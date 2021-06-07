@@ -13,7 +13,9 @@ WITH grouped_positions as (SELECT *, CASE WHEN pos = 'OF' THEN 'Outfield'
 						   					OR pos = '2B' 
 						   					OR pos = '3B' 
 						   					THEN 'Infield'
-			                           	  ELSE 'Battery' END as pos_group
+			                           	  WHEN pos = 'P' 
+						   					OR pos = 'C'
+						   					THEN 'Battery' END as pos_group
 						   FROM fielding)
 SELECT pos_group, SUM(po) as putouts
 FROM grouped_positions
