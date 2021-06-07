@@ -9,4 +9,4 @@ ORDER BY height;
 	SELECT *
 	FROM appearances
 	WHERE playerid = 'gaedeed01';
-A: Edward Carl - 1 game - St. Louis Browns
+ -- A: Edward Carl - 43in - 1 game - St. Louis Browns
