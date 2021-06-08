@@ -39,24 +39,10 @@ ORDER BY teamid, yearid;
 
 /* Then redo your query, excluding the problem year. How often from 1970 – 2016 was it the case
    that a team with the most wins also won the world series? What percentage of the time? */	    
-
-
-
-/* The answer for this should be 12 teams also won the world series, around 26%. Chris said
-   he used a CTE to get the answer. */
-
-
-
-
-
-
-
-
---- Ignore Below ---
-
-/* SELECT yearid, w, teamid, wcwin, max_w_by_year.row_number
+SELECT yearid, w, teamid, wswin, max_w_by_year.row_number
 FROM (SELECT *,
       row_number() OVER(PARTITION BY yearid ORDER BY w DESC) as row_number
       FROM teams) as max_w_by_year
 WHERE max_w_by_year.row_number = 1
-AND (yearid BETWEEN 1970 and 1980 OR yearid BETWEEN 1982 and 2016); */
+AND (yearid BETWEEN 1970 and 1980 OR yearid BETWEEN 1982 and 2016);
+/* 12 teams had the most wins and also won the world series, around 26%. */
