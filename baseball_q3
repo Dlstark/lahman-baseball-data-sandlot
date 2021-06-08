@@ -19,17 +19,23 @@
 -- ORDER BY total_salary DESC
 
 
-SELECT  p.namegiven, am.awardid, am.lgid, am.playerid,am.yearid
+SELECT p.namegiven, am.playerid,am.awardid, am.lgid, m.teamid
 FROM awardsmanagers AS am
 LEFT JOIN managers AS m
 ON am.playerid = m.playerid
 LEFT JOIN people AS p
 ON am.playerid = p.playerid
 WHERE awardid = 'TSN Manager of the Year'
-AND am.lgid IN ('ML', 'NL')
-GROUP BY p.namegiven,am.awardid, am.lgid, am.playerid, am.yearid
+AND (am.lgid = 'ML' OR am.lgid ='NL')
+AND (m.teamid = 'ATL' OR m.teamid = 'TOR')
+GROUP BY p.namegiven,am.awardid, am.lgid,m.teamid,am.playerid
+ORDER BY p.namegiven DESC
 
-ORDER BY p.namegiven
+
+
+
+
+
 
 
 
