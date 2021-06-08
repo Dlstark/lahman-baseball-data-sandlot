@@ -1,0 +1,62 @@
+/* Q7: From 1970 – 2016, what is the largest number of wins for a team that did not win the world
+       series? What is the smallest number of wins for a team that did win the world series? Doing
+	   this will probably result in an unusually small number of wins for a world series champion
+	   – determine why this is the case. Then redo your query, excluding the problem year. How often 
+	   from 1970 – 2016 was it the case that a team with the most wins also won the world series? 
+	   What percentage of the time? */
+
+SELECT *
+FROM teams;
+
+-- What is the largest number of wins for a team that did not win the world series?
+SELECT teamid, wswin, w
+FROM teams
+WHERE wswin = 'N'
+AND yearid BETWEEN 1970 and 2016
+ORDER BY w DESC;
+-- 116 (SEA)
+
+
+-- What is the smallest number of wins for a team that did win the world series?
+SELECT teamid, wswin, w
+FROM teams
+WHERE wswin = 'Y'
+AND yearid BETWEEN 1970 and 2016
+ORDER BY w;
+-- 63 (LAN)
+
+
+/* Doing this will probably result in an unusually small number of wins for a world series
+   champion – determine why this is the case. */
+SELECT teamid, yearid, wswin, w
+FROM teams
+WHERE yearid BETWEEN 1970 and 2016
+AND teamid = 'LAN'
+ORDER BY teamid, yearid;
+/* They have a small number of wins despite winning the world series because they only won the 
+   world series once from 1970 to 2016, in 1981. */
+
+
+/* Then redo your query, excluding the problem year. How often from 1970 – 2016 was it the case
+   that a team with the most wins also won the world series? What percentage of the time? */	    
+
+
+
+/* The answer for this should be 12 teams also won the world series, around 26%. Chris said
+   he used a CTE to get the answer. */
+
+
+
+
+
+
+
+
+--- Ignore Below ---
+
+/* SELECT yearid, w, teamid, wcwin, max_w_by_year.row_number
+FROM (SELECT *,
+      row_number() OVER(PARTITION BY yearid ORDER BY w DESC) as row_number
+      FROM teams) as max_w_by_year
+WHERE max_w_by_year.row_number = 1
+AND (yearid BETWEEN 1970 and 1980 OR yearid BETWEEN 1982 and 2016); */
