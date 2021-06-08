@@ -4,3 +4,20 @@
 -- Only consider parks where there were at least 10 games played. 
 -- Report the park name, team name, and average attendance.
 -- Repeat for the lowest 5 average attendance.
+
+SELECT h.team,
+       h.park,
+	   h.year,
+	   h.games,
+	   ROUND(SUM(attendance::numeric) / SUM(games::numeric), 0) AS avg_attendance
+FROM homegames AS h
+WHERE year = '2016'
+AND h.games >=10
+GROUP BY h.team, h.park,h.year, h.games
+ORDER BY avg_attendance DESC
+LIMIT 5;
+
+
+
+
+
