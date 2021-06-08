@@ -1,19 +1,23 @@
--- Q3
+Q3
 
--- SELECT p.namefirst,
---        p.namelast,
--- 	   s1.lgid,
--- 	   s.schoolname,
--- 	   SUM(s1.salary) AS total_salary
--- FROM collegeplaying AS c
--- LEFT JOIN schools AS s
--- ON c.schoolid = s.schoolid
--- LEFT JOIN salaries AS s1
--- ON c.playerid = s1.playerid
--- LEFT JOIN people AS p
--- ON s1.playerid = p.playerid
--- WHERE s.schoolname = 'Vanderbilt University'
--- AND s1.salary IS NOT NULL
--- AND lgid = 'AL'
--- GROUP BY p.namefirst, p.namelast, s1.lgid,s.schoolname
--- ORDER BY total_salary DESC
+SELECT p.namefirst,
+       p.namelast,
+	   s1.lgid,
+	   s.schoolname,
+	   SUM(s1.salary) AS total_salary
+FROM collegeplaying AS c
+LEFT JOIN schools AS s
+ON c.schoolid = s.schoolid
+LEFT JOIN salaries AS s1
+ON c.playerid = s1.playerid
+LEFT JOIN people AS p
+ON s1.playerid = p.playerid
+WHERE s.schoolname = 'Vanderbilt University'
+AND s1.salary IS NOT NULL
+AND lgid = 'AL'
+GROUP BY p.namefirst, p.namelast, s1.lgid,s.schoolname
+ORDER BY total_salary DESC
+
+
+
+
