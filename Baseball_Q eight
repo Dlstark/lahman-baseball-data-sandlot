@@ -7,35 +7,27 @@
 
 SELECT p.park_name,
        h.team,
-	   h.games,
-	   h.year,
-	   h.park,
-   	   ROUND(SUM(attendance::numeric) / COUNT(games::numeric), 0) AS avg_attendance
+	   ROUND((attendance::numeric) / (games::numeric),0) AS avg_attendance
 FROM homegames AS h
 LEFT JOIN parks AS p
 ON h.park = p.park
 WHERE h.year = '2016'
 AND h.games >=10
-GROUP BY h.team, h.park,h.year, h.games,p.park_name
 ORDER BY avg_attendance DESC 
 LIMIT 5;
 
 -- Repeat for the lowest 5 average attendance.
 
-SELECT  park_name,team, games, year, park,(avg_attendance) AS lowest_5_avg_attendance 
+SELECT  park_name,team,(avg_attendance) AS lowest_5_avg_attendance 
                     
 FROM (SELECT p.park_name,
        h.team,
-	   h.games,
-	   h.year,
-	   h.park,
-   	   ROUND(SUM(attendance::numeric) / COUNT(games::numeric), 0) AS avg_attendance
+   	   ROUND((attendance::numeric) / (games::numeric), 0) AS avg_attendance
 FROM homegames AS h
 LEFT JOIN parks AS p
 ON h.park = p.park
 WHERE h.year = '2016'
 AND h.games >=10
-GROUP BY h.team, h.park,h.year, h.games,p.park_name
 ORDER BY avg_attendance 
 LIMIT 5) AS lowest_5_avg_attendance
 
