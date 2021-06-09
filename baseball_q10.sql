@@ -12,5 +12,5 @@ ORDER BY sal.salary DESC;
 
 -- A: Vandy has the highest 1 year salary at 30,000,000 for David Taylor in 2016, 
 -- But UT is pretty comsistantly up there with Todd Lynn.  No direct winner, 
--- just depends how you want to weight the question.
+-- just depends how you want to weight the question..
 
