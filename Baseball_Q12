@@ -1,0 +1,22 @@
+-- In this question, you will explore the connection between number of wins and attendance.
+-- a. Does there appear to be any correlation between attendance at home games and number of wins?
+-- b. Do teams that win the world series see a boost in attendance the following year?
+-- b1 What about teams that made the playoffs?
+-- b2 Making the playoffs means either being a division winner or a wild card winner.
+
+-- a
+
+SELECT t.name,t.yearid, h.attendance, t.w, t.teamid,
+       CORR(h.attendance, t.w)
+	   OVER(PARTITION BY t.teamid) AS "Correlation"
+FROM teams AS t 
+LEFT JOIN homegames AS h
+ON t.attendance = h.attendance
+WHERE h.attendance IS NOT NULL
+ORDER BY 
+
+
+
+
+
+
